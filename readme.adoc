@@ -15,18 +15,6 @@ Here are the key components of architecture:
 
 image::images/architecture.png[]
 
-== Deploy Lex bot and Alexa backend function using Java
-
-You need to install `org.sample.aws.lex:lex-java:0.2` dependency as explained at https://github.com/arun-gupta/lex-java#install-jar-locally before building this project.
-
-```
-mvn -f starwars-chatbot/pom.xml clean package install
-```
-
-ARN for Alexa function: `aws lambda get-function --function-name StarWarsChatbot --region us-east-1 | jq .Configuration.FunctionArn`
-
-NOTE: Getting Started with Alexa skill using Java is explained at https://github.com/arun-gupta/alexa-skill-java.
-
 == JSON Document
 
 Data is loaded as JSON documents in DynamoDB. Here is a sample JSON document:
@@ -79,24 +67,6 @@ image::images/sms.png[width="50%"]
 
 Details: https://docs.aws.amazon.com/lex/latest/dg/twilio-bot-association.html
 
-=== Facebook
-
-. Like https://www.facebook.com/Star-Wars-Chatbot-124902658243108/
-. From http://messenger.com, send a message to this page as shown below:
-
-image::images/facebook.png[width="50%"]
-
-Details: http://docs.aws.amazon.com/lex/latest/dg/fb-bot-association.html
-
-=== Slack
-
-. Get yourself invited:  https://join.slack.com/t/starwarschatbot/shared_invite/MjM4OTU2MTEwMTE0LTE1MDUwOTgzMzItYzZmMjFhYTNiNA
-. DM with the app `star_wars_chatbot` and ask questions as shown below:
-
-image::images/slack.png[width="50%"]
-
-Details: https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html
-
 === Alexa
 
 . Test using http://echosim.io or Alexa
@@ -117,5 +87,5 @@ TODO
 
 == How to talk to the chatbot?
 
-Use phrase `Ask Star Wars` for Alexa, otherwise just the text as is. The list of questions is at https://github.com/arun-gupta/chatbot/wiki/Typical-Questions.
+Use phrase `Ask Star Wars` for Alexa, otherwise just the text as is. The list of questions is at https://github.com/demolition16/chatbot.git
 
