@@ -1,0 +1,48 @@
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+
+public class RegisterServlet extends HttpServlet {
+
+    // doGet handles GET requests for displaying the registration form
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Set content type
+        response.setContentType("text/html");
+
+        // Get PrintWriter to send response
+        PrintWriter out = response.getWriter();
+
+        // Display the registration form
+        out.println("<html><body>");
+        out.println("<h2>Registration Form</h2>");
+        out.println("<form method='POST' action='/chatbot/register'>");
+        out.println("Name: <input type='text' name='name' required/><br/><br/>");
+        out.println("Email: <input type='email' name='email' required/><br/><br/>");
+        out.println("Password: <input type='password' name='password' required/><br/><br/>");
+        out.println("<input type='submit' value='Register'/>");
+        out.println("</form>");
+        out.println("</body></html>");
+    }
+
+    // doPost handles POST requests when the user submits the registration form
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Get user input from the registration form
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        // For this example, we will save the user information in session (simulating saving to a database)
+        HttpSession session = request.getSession();
+        session.setAttribute("name", name);
+        session.setAttribute("email", email);
+
+        // Redirect the user to the profile page after registration
+        response.sendRedirect("profile");
+    }
+}

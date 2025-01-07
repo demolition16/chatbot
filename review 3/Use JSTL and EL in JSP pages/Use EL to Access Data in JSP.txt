@@ -1,0 +1,30 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- Include JSTL Core library -->
+<html>
+<head>
+    <title>Chatbot Interaction</title>
+</head>
+<body>
+    <h2>Chat with the Bot</h2>
+
+    <!-- Display user input message and bot response -->
+    <p><b>Your Message:</b> ${userMessage}</p>
+    <p><b>Bot Response:</b> ${botResponse}</p>
+
+    <!-- Chat history -->
+    <h3>Chat History:</h3>
+    <ul>
+        <!-- Use JSTL to loop through a list of messages -->
+        <c:forEach var="message" items="${chatHistory}">
+            <li><b>You:</b> ${message.userMessage} <br/> <b>Bot:</b> ${message.botResponse}</li>
+        </c:forEach>
+    </ul>
+
+    <!-- Form for submitting new message to chatbot -->
+    <form action="/chatbot/chat" method="POST">
+        <label for="userMessage">Type a message:</label>
+        <input type="text" name="userMessage" required/>
+        <input type="submit" value="Send"/>
+    </form>
+</body>
+</html>

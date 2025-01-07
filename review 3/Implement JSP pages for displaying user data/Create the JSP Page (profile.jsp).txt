@@ -1,0 +1,40 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>Welcome to the Chatbot</h1>
+
+    <h2>User Profile</h2>
+    <table>
+        <tr>
+            <td><b>Name:</b></td>
+            <td>${userName}</td>
+        </tr>
+        <tr>
+            <td><b>Email:</b></td>
+            <td>${userEmail}</td>
+        </tr>
+        <tr>
+            <td><b>Bio:</b></td>
+            <td>${userBio}</td>
+        </tr>
+    </table>
+
+    <h3>Chat History</h3>
+    <form action="/chatbot/chat" method="POST">
+        <label for="userMessage">Enter Message:</label>
+        <input type="text" name="userMessage" required/>
+        <input type="submit" value="Send"/>
+    </form>
+
+    <br/><br/>
+    <h4>Previous Messages</h4>
+    <ul>
+        <!-- Sample list of previous messages -->
+        <li><b>You:</b> Hello chatbot!</li>
+        <li><b>Bot:</b> Hello, how can I assist you today?</li>
+    </ul>
+</body>
+</html>

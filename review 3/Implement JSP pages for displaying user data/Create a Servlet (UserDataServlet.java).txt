@@ -1,0 +1,31 @@
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+
+public class UserDataServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Set the response content type to HTML
+        response.setContentType("text/html");
+
+        // Get PrintWriter to send response to the client
+        PrintWriter out = response.getWriter();
+
+        // Simulate user data (you can replace it with actual data from a database)
+        String userName = "John Doe";
+        String userEmail = "johndoe@example.com";
+        String userBio = "A chatbot enthusiast";
+
+        // Store user data in the session or request object
+        request.setAttribute("userName", userName);
+        request.setAttribute("userEmail", userEmail);
+        request.setAttribute("userBio", userBio);
+
+        // Forward to the JSP page
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/profile.jsp");
+        dispatcher.forward(request, response);
+    }
+}

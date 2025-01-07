@@ -1,0 +1,19 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Chatbot Response</title>
+</head>
+<body>
+    <h2>Chatbot Interaction</h2>
+
+    <p><b>Your Message:</b> ${userMessage}</p>
+    <p><b>Chatbot Response:</b> ${botResponse}</p>
+
+    <form method="POST" action="/chatbot/chat">
+        <label for="userMessage">Type your next message:</label><br/>
+        <input type="text" name="userMessage" required/><br/><br/>
+        <input type="submit" value="Send"/>
+    </form>
+
+</body>
+</html>

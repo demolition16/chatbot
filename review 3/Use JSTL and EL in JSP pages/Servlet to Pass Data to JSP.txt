@@ -1,0 +1,68 @@
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+import java.util.*;
+
+public class ChatbotServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Simulate a chat history as an ArrayList
+        List<ChatMessage> chatHistory = new ArrayList<>();
+        chatHistory.add(new ChatMessage("Hello, chatbot!", "Hello, how can I assist you today?"));
+        
+        // Pass the chat history and default messages to the JSP
+        request.setAttribute("chatHistory", chatHistory);
+        request.setAttribute("userMessage", "Hello, chatbot!");
+        request.setAttribute("botResponse", "Hello, how can I assist you today?");
+        
+        // Forward to JSP
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/chat.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Get the user message from the form
+        String userMessage = request.getParameter("userMessage");
+
+        // Generate a simple bot response (you can replace this with actual logic)
+        String botResponse = "Bot says: You said: " + userMessage;
+
+        // Simulate storing the chat history
+        List<ChatMessage> chatHistory = new ArrayList<>();
+        chatHistory.add(new ChatMessage(userMessage, botResponse));
+
+        // Set user message, bot response, and chat history as request attributes
+        request.setAttribute("chatHistory", chatHistory);
+        request.setAttribute("userMessage", userMessage);
+        request.setAttribute("botResponse", botResponse);
+
+        // Forward to JSP
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/chat.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    // ChatMessage class to hold user and bot messages
+    public static class ChatMessage {
+        private String userMessage;
+        private String botResponse;
+
+        public ChatMessage(String userMessage, String botResponse) {
+            this.userMessage = userMessage;
+            this.botResponse = botResponse;
+        }
+
+        public String getUserMessage() {
+            return userMessage;
+        }
+
+        public String getBotResponse() {
+            return botResponse;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Chat with the Chatbot</h1>
+    <form action="chatbot" method="POST">
+        <label for="userInput">Enter your message:</label><br>
+        <input type="text" id="userInput" name="userInput" required><br><br>
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot Response</title>
+</head>
+<body>
+    <h1>Chatbot Response</h1>
+    <p>You said: ${param.userInput}</p>
+    <p>Chatbot says: ${requestScope.botResponse}</p>
+    <a href="chatbot">Chat Again</a>
+</body>
+</html>

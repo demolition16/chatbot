@@ -1,0 +1,43 @@
+package com.chatbot.servlet;
+
+import com.chatbot.service.ChatbotService;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+
+@WebServlet("/chatbot")
+public class ChatbotServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+    private ChatbotService chatbotService;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        chatbotService = new ChatbotService();  // Initialize the chatbot service
+    }
+
+    // Handle GET requests to show the chatbot form
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Forward the request to the form page
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/chatbotForm.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    // Handle POST requests to process user input
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String userInput = request.getParameter("userInput");
+
+        // Get chatbot response based on the user input
+        String botResponse = chatbotService.getResponse(userInput);
+
+        // Set the response to be displayed on the response page
+        request.setAttribute("botResponse", botResponse);
+
+        // Forward the request to the response page
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/chatbotResponse.jsp");
+        dispatcher.forward(request, response);
+    }
+}
